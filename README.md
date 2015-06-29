@@ -1,6 +1,6 @@
-# Databox PHP SDK
+# Databox bindings for PHP
 
-The PHP SDK for interacting with the Databox Push API.
+The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
 ## Features
 
@@ -87,8 +87,6 @@ echo $log;
 
 ```
 
-
-
 ## Documentation
 
 See the `doc` directory for more detailed documentation. 
@@ -97,8 +95,7 @@ See the `doc` directory for more detailed documentation.
 
 `databox-php-sdk` is licensed under the MIT License - see the LICENSE file for details
 
-## Credits
+## Credits & contributors
 
-### Contributors
-
-- The Databox team, most importantly [Jakob Murko aka. sraka1](http://github.com/sraka1) and [Uroš Majerič](http://github.com/umajeric) 
+- [Jakob Murko aka. sraka1](http://github.com/sraka1)
+- [Uroš Majerič](http://github.com/umajeric) 
