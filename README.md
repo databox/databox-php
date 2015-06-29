@@ -120,4 +120,4 @@ See the `doc` directory for more detailed documentation.
 
 ### Contributors
 
-- The Databox team, most importantly [Jakob Murko aka. sraka1](http://github.com/sraka1) 
+- The Databox team, most importantly [Jakob Murko aka. sraka1](http://github.com/sraka1) and [Uroš Majerič](http://github.com/umajeric) 
