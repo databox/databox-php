@@ -1,7 +1,5 @@
 # Databox PHP SDK
 
-[![Build Status](https://travis-ci.org/sraka1/Databox-PHP-SDK.png?branch=master)](https://travis-ci.org/sraka1/Databox-PHP-SDK) [![Latest Stable Version](https://poser.pugx.org/databox/databox-php-sdk/v/stable.png)](https://packagist.org/packages/databox/databox-php-sdk) [![Total Downloads](https://poser.pugx.org/databox/databox-php-sdk/downloads.png)](https://packagist.org/packages/databox/databox-php-sdk) [![Latest Unstable Version](https://poser.pugx.org/databox/databox-php-sdk/v/unstable.png)](https://packagist.org/packages/databox/databox-php-sdk) [![License](https://poser.pugx.org/databox/databox-php-sdk/license.png)](https://packagist.org/packages/databox/databox-php-sdk)
-
 The PHP SDK for interacting with the Databox Push API.
 
 ## Features
