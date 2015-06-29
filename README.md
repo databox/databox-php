@@ -61,60 +61,24 @@ use \Databox\Widget\Table as Table;
 use \Databox\KPI as KPI;
 
 // Read from Custom connection info in Databox WebApp (https://app.databox.com)
-$userAccessToken = 'YOUR-USER-ACCESS-TOKEN';
-$sourceToken     = 'YOUR-SOURCE-TOKEN';
+$spaceAccessToken = 'YOUR-SPACE-ACCESS-TOKEN';
 
 //Instantiate the client
-$client = new DataboxClient($userAccessToken);
-$client->setSourceToken($sourceToken);
+$client = new DataboxClient($spaceAccessToken);
 
 //Instantiate the builder
 $builder = new DataboxBuilder();
 
 //The addKpi method uses the accepts $key, $value, $date (in that order). Date should be a timestamp in the format Y-m-d\TH:i:s. Date may be NULL, in which case the current UTC time will be used.
-$builder->addKpi(new KPI("testmain", mt_rand(1,600)));
-$builder->addKpi(new KPI("testbignumber", mt_rand(1,600)));
-$builder->addKpi(new KPI("testcompare", mt_rand(1,600)));
-$builder->addKpi(new KPI("testcompare", mt_rand(1,600)));
-$builder->addKpi(new KPI("testintervalvalues", mt_rand(1,600)));
-$builder->addKpi(new KPI("testlinechart", mt_rand(1,600)));
-$builder->addKpi(new KPI("testbarchart", mt_rand(1,600)));
 
-$table = new Widget\Table("testtable");
-$table->addColumn("KPI", "string");
-$table->addColumn("Today", "float");
-$table->addColumn("Yesterday", "float");
-$table->addRow(new Table\ColumnData("Visitors"), new Table\ColumnData(1234, 567), new Table\ColumnData(9876, 123));
-$builder->addWidget($table);
+$kpi = new KPI("my_kpi1", mt_rand(1,600));
+$kpi->addAttribute('name', 'Databox');
+$kpi->addAttribute('name', 'Zeppelin');
+$builder->addKpi($kpi);
 
-$progress = new Widget\Progress("testprogress");
-$progress->setMax(123);
-$progress->setLabel("Life achievements");
-$progress->setValue(10);
-$builder->addWidget($progress);
-
-$messages = new Widget\Messages("testmessages");
-$messages->addMessage("I like pie!", "USD");
-$messages->addMessage("Sweden", "USD");
-$builder->addWidget($messages);
-
-$pie = new Widget\Pie("testpie");
-$pie->addSlice("Pepperoni", 20);
-$pie->addSlice("Salami", 50, -10);
-$pie->addSlice("Tuna", 70, -30);
-$builder->addWidget($pie);
-
-$pie = new Widget\Funnel("testfunnel");
-$pie->addSlice("Cheese", 5);
-$pie->addSlice("Meat", 90, -10);
-$pie->addSlice("Apples", 10, -30);
-$builder->addWidget($pie);
-
-$pie = new Widget\Pipeline("testpipeline");
-$pie->addSlice("Mac", 20, 24);
-$pie->addSlice("PC", 30, -10);
-$pie->addSlice("Amiga", 10, -10);
-$builder->addWidget($pie);
+$builder->addKpi(new KPI("my_kpi2", mt_rand(1,600)));
+$builder->addKpi(new KPI("my_kpi3", mt_rand(1,600)));
+$builder->addKpi(new KPI("my_kpi4", mt_rand(1,600)));
 
 //You must provide uniqueURL and payload parameters. Payload can be any JSON string, but we reccommend you use our builder class.
 try {
