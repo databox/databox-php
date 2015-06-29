@@ -49,14 +49,8 @@ Now we can use autoloader from Composer by:
 require_once '../vendor/autoload.php';
 
 use \Databox\DataboxClient;
-use \Databox\DataboxClientBuilder;
-use \Databox\DataboxException;
 use \Databox\DataboxBuilder;
-use \Guzzle\Common\Exception\RuntimeException;
-use \Exception;
-use \Databox\Widget as Widget;
-use \Databox\Widget\Table as Table;
-use \Databox\KPI as KPI;
+use \Databox\KPI;
 
 // Read from Custom connection info in Databox WebApp (https://app.databox.com)
 $spaceAccessToken = 'YOUR-SPACE-ACCESS-TOKEN';
@@ -68,38 +62,27 @@ $client = new DataboxClient($spaceAccessToken);
 $builder = new DataboxBuilder();
 
 //The addKpi method uses the accepts $key, $value, $date (in that order). Date should be a timestamp in the format Y-m-d\TH:i:s. Date may be NULL, in which case the current UTC time will be used.
-
-$kpi = new KPI("my_kpi1", mt_rand(1,600));
+$kpi = new KPI("attributed_kpi", mt_rand(1,600));
 $kpi->addAttribute('name', 'Databox');
 $kpi->addAttribute('name', 'Zeppelin');
 $builder->addKpi($kpi);
 
-$builder->addKpi(new KPI("my_kpi2", mt_rand(1,600)));
-$builder->addKpi(new KPI("my_kpi3", mt_rand(1,600)));
-$builder->addKpi(new KPI("my_kpi4", mt_rand(1,600)));
+$builder->addKpi(new KPI("kpi", mt_rand(1,600)));
 
 //You must provide uniqueURL and payload parameters. Payload can be any JSON string, but we reccommend you use our builder class.
 try {
     //If no Exception is raised everything went through as it should've :)
     $returnedResult = $client->pushData($builder);
-    
+
     is_array($returnedResult)
         ? print_r($returnedResult)
         : print($returnedResult);
-} catch (DataboxException $e) {
-    echo $e->getType();
-    echo $e->getWebMessage();
+} catch (\Exception $e) {
     echo $e->getMessage();
-} catch (RuntimeException $e) {
-    echo $e->getMessage();
-    echo $e->getCode();
-} catch (Exception $e) {
-    echo $e->getMessage();
-} 
+}
 
 //Fetch the saved data log
 $log = $client->getPushLog();
-
 echo $log;
 
 ```
