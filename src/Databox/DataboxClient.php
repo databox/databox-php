@@ -15,9 +15,9 @@ use Guzzle\Service\Description\ServiceDescription;
 class DataboxClient extends Client implements DataboxClientInterface
 {
 
-    const DATABOX_API_BASEURL = 'https://api.databox.com';
+    const DATABOX_API_BASEURL = 'http://push2new.databox.com:8080';
 
-    protected $userAgent = 'Databox-PHP-SDK/1.2';
+    protected $userAgent = 'Databox-PHP-SDK/2.0';
 
     private $authListener;
 
