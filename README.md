@@ -2,12 +2,6 @@
 
 The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
-## Features
-
-* Follows PSR-4 conventions and coding standard: autoload friendly
-* Built on top of a solid and extensively tested framework - Guzzle
-* Tested and well-documented
-
 ## Requirements
 
 * PHP >= 5.4
@@ -16,19 +10,20 @@ The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 ## Autoloading
 
 `databox-php` uses [Composer](http://getcomposer.org).
-The first step to use `databox-php-sdk` is to download composer:
+The first step to use `databox-php` is to download composer:
 
 ```bash
 $ curl -s http://getcomposer.org/installer | php
 ```
 
-Then we have to install our dependencies using:
+Install dependencies using:
 ```bash
 $ php composer.phar install
 ```
-Now we can use autoloader from Composer by:
 
-```yaml
+Use autoloader from Composer by:
+
+```json
 {
     "require": {
         "databox/databox-php": "*"
@@ -37,7 +32,7 @@ Now we can use autoloader from Composer by:
 }
 ```
 
-> `databox-php-sdk` follows the PSR-0 convention names for its classes, which means you can easily integrate `databox-php-sdk` classes loading in your own autoloader.
+`databox-php` follows the PSR-4 convention names for its classes, which means you can easily integrate `databox-php` classes loading in your own autoloader.
 
 ## Basic example
 
@@ -71,7 +66,7 @@ See the `doc` directory for more detailed documentation.
 
 ## License
 
-`databox-php-sdk` is licensed under the MIT License - see the LICENSE file for details
+`databox-php` is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Credits & contributors
 
