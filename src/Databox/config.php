@@ -6,7 +6,7 @@
  */
 return array(
     'name' => 'Databox',
-    'apiVersion' => '1.7',
+    'apiVersion' => '2.0',
     'description' => 'Databox PushAPI client',
     'operations' => array(
         'SetPushData' => array(
@@ -24,17 +24,11 @@ return array(
             )
         ),
         'GetPushDataLog' => array(
-            'httpMethod' => 'GET',
-            'uri' => 'source/{uniqueUrl}/logs',
-            'summary' => 'Get a log of all pushed data to your app',
+            'httpMethod' => 'POST',
+            'uri' => 'lastpushes',
+            'summary' => 'Get a log of last pushed data',
             'responseClass' => 'GetPushDataLogOutput',
-            'parameters' => array(
-                'uniqueUrl' => array(
-                    'description' => 'The unique URL of your app',
-                    'type' => 'string',
-                    'location' => 'uri',
-                    'required' => true
-                )
+            'parameters' => array()
             )
         )
     ),
