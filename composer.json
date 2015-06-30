@@ -30,8 +30,8 @@
     "phpdocumentor/phpdocumentor": "2.*"
   },
   "autoload": {
-    "psr-0": {
-      "Databox\\": "src/"
+    "psr-4": {
+      "Databox\\": "src/Databox"
     }
   }
 }
