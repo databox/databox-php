@@ -1,32 +1,37 @@
 {
-	"name" : "databox/databox-php-sdk",
-	"description" : "PHP SDK for Databox",
-	"type" : "library",
-	"authors" : [{
-			"name" : "Jakob Murko",
-			"email" : "jakob@databox.com",
-			"homepage" : "http://databox.com"
-		},
-		{
-			"name" : "Uros Majeric",
-			"email" : "uros@majeric.si"
-		}
-	],
-	"homepage" : "http://github.com/databox/php-sdk",
-	"license" : [
-		"MIT"
-	],
-	"require" : {
-		"guzzle/guzzle": "3.9.*@dev",
-		"php" : ">=5.4"
-	},
-	"require-dev" : {
-		"phpunit/phpunit" : "3.7.*",
-		"phpdocumentor/phpdocumentor" : "2.*"
-	},
-	"autoload" : {
-		"psr-0" : {
-			"Databox\\" : "src/"
-		}
-	}
+  "name": "databox/databox-php",
+  "description": "Databox bindings for PHP",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Jakob Murko",
+      "email": "jakob@databox.com",
+      "homepage": "http://databox.com"
+    },
+    {
+      "name": "Uros Majeric",
+      "email": "uros@majeric.si"
+    },
+    {
+      "name": "Oto Brglez",
+      "email": "otobrglez@gmail.com"
+    }
+  ],
+  "homepage": "http://github.com/databox/databox-php",
+  "license": [
+    "MIT"
+  ],
+  "require": {
+    "guzzlehttp/guzzle": "5.x",
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.x",
+    "phpdocumentor/phpdocumentor": "2.*"
+  },
+  "autoload": {
+    "psr-0": {
+      "Databox\\": "src/"
+    }
+  }
 }
