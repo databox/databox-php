@@ -2,37 +2,53 @@
 
 namespace Databox\Tests;
 
-use Databox\Client;
-
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-    function __construct(){
-        $this->client = new Client("adxg1kq5a4g04k0wk0s4wkssow8osw84");
-    }
-
-    /*
-    public function testInitialisation()
+    function __construct()
     {
-        //TODO: Token thing here
-        $this->assertEquals(get_class($this->client), 'Databox\Client');
+        $this->client = $this->getMockBuilder('Databox\Client')
+            ->setMethods(array("rawPush"))
+            ->setConstructorArgs(["adxg1kq5a4g04k0wk0s4wkssow8osw84"])
+            ->getMock();
     }
-*/
 
-    public function testPush() {
+    public function testLastPush()
+    {
+        $this->client->method('rawPush')->willReturn([
+            [], []
+        ]);
+
+        $this->assertCount(2, $this->client->lastPush(2));
+    }
+
+    public function testPush()
+    {
+        $this->client->method('rawPush')->willReturn(
+            ['status' => 'ok']
+        );
+
         $this->assertTrue($this->client->push("sales", 53.2));
         $this->assertTrue($this->client->push("sales", 40, "2015-01-01 17:00:00"));
     }
 
-    public function testInsertAll() {
+    public function testFailedPush()
+    {
+        $this->client->method('rawPush')->willReturn(
+            ['status' => 'warnings some items not inserted (ok: 0, false: 1)']
+        );
+
+        $this->assertFalse($this->client->push(null, null));
+    }
+
+    public function testInsertAll()
+    {
+        $this->client->method('rawPush')->willReturn(
+            ['status' => 'ok']
+        );
+
         $this->assertTrue($this->client->insertAll([
             ["sales", 53.2],
             ["sales", 50.2, "2015-01-01 17:00:00"],
         ]));
-    }
-
-
-    public function testLastPush() {
-        $this->assertCount(1, $this->client->lastPush());
-        $this->assertCount(3, $this->client->lastPush(3));
     }
 }

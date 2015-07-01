@@ -10,4 +10,4 @@ before_script:
   - composer install
 
 script:
-  - ./vendor/bin/phpunit -v --debug
+  - ./vendor/bin/phpunit -v --debug --color

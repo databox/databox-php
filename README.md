@@ -70,6 +70,6 @@ See the `doc` directory for more detailed documentation.
 
 ## Credits & contributors
 
-- [Jakob Murko aka. sraka1](http://github.com/sraka1)
+- [Jakob Murko](http://github.com/sraka1)
 - [Uroš Majerič](http://github.com/umajeric) 
 - [Oto Brglez](https://github.com/otobrglez)

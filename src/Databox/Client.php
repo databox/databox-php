@@ -3,7 +3,6 @@
 namespace Databox;
 
 use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Event\BeforeEvent;
 
 class Client extends GuzzleClient
 {
@@ -19,12 +18,11 @@ class Client extends GuzzleClient
                 'auth' => [$pushToken, '', 'Basic']
             ],
         ]);
+    }
 
-        /*
-        $this->getEmitter()->on('before', function (BeforeEvent $e) {
-            echo PHP_EOL.'About to send request: ' . $e->getRequest();
-        });
-        */
+    public function rawPush($path = '/', $data = [])
+    {
+        return $this->post($path, $data)->json();
     }
 
     private function processKPI($key, $value, $date = null)
@@ -36,23 +34,23 @@ class Client extends GuzzleClient
 
     public function push($key, $value, $date = null)
     {
-        return $this->post('/', [
+        return $this->rawPush('/', [
             'json' => ['data' => [$this->processKPI($key, $value, $date)]]
-        ])->json()["status"] == "ok";
+        ])["status"] == "ok";
     }
 
     public function insertAll($kpis)
     {
-        return $this->post('/', [
+        return $this->rawPush('/', [
             'json' => ['data' => array_map(function ($i) {
                 if (count($i) < 3) $i[] = null;
                 return $this->processKPI($i[0], $i[1], $i[2]);
             }, $kpis)]
-        ])->json()["status"] == "ok";
+        ])["status"] == "ok";
     }
 
     public function lastPush($n = 1)
     {
-        return $this->post(sprintf('/lastpushes/%d', $n))->json();
+        return $this->rawPush(sprintf('/lastpushes/%d', $n));
     }
 }
