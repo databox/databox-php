@@ -1,11 +1,13 @@
 # Databox bindings for PHP
 
+[![Build Status][travis-badge]][travis]
+
 The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
 ## Requirements
 
 * PHP >= 5.4
-* PHPUnit for development
+* [PHPUnit](https://phpunit.de/) for development.
 
 ## Autoloading
 
@@ -37,10 +39,6 @@ Use autoloader from Composer by:
 ## Basic example
 
 ```php
-<?php
-
-$loader = require __DIR__ . "/./vendor/autoload.php";
-
 use Databox\Client;
 
 $c = new Client("<push_token>");
@@ -51,7 +49,6 @@ if($ok) echo "Inserted,...";
 $c->insertAll([
     ["sales", 203],
     ["sales", 103, "2015-01-01 17:00:00"],
-
 ]);
 
 print_r(
@@ -73,3 +70,6 @@ See the `doc` directory for more detailed documentation.
 - [Jakob Murko](http://github.com/sraka1)
 - [Uroš Majerič](http://github.com/umajeric) 
 - [Oto Brglez](https://github.com/otobrglez)
+ 
+[travis-badge]: https://secure.travis-ci.org/databox/databox-php.png
+[travis]: http://travis-ci.org/databox/databox-php
