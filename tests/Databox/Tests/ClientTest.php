@@ -4,11 +4,11 @@ namespace Databox\Tests;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-    function __construct()
+    public function __construct()
     {
         $this->client = $this->getMockBuilder('Databox\Client')
-            ->setMethods(array("rawPush"))
-            ->setConstructorArgs(["adxg1kq5a4g04k0wk0s4wkssow8osw84"])
+            ->setMethods(['rawPush'])
+            ->setConstructorArgs(['adxg1kq5a4g04k0wk0s4wkssow8osw84'])
             ->getMock();
     }
 
@@ -27,8 +27,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ['status' => 'ok']
         );
 
-        $this->assertTrue($this->client->push("sales", 53.2));
-        $this->assertTrue($this->client->push("sales", 40, "2015-01-01 17:00:00"));
+        $this->assertTrue($this->client->push('sales', 53.2));
+        $this->assertTrue($this->client->push('sales', 40, '2015-01-01 17:00:00'));
     }
 
     public function testFailedPush()
@@ -47,8 +47,8 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertTrue($this->client->insertAll([
-            ["sales", 53.2],
-            ["sales", 50.2, "2015-01-01 17:00:00"],
+            ['sales', 53.2],
+            ['sales', 50.2, '2015-01-01 17:00:00'],
         ]));
     }
 }
