@@ -69,7 +69,7 @@ See the `doc` directory for more detailed documentation.
 
 ## Contributing
 
-See the [contribute guide](CONTRIBUTE.md) for more info how to contribute.
+See the [contribute guide](CONTRIBUTING.md) for more info how to contribute.
 
 ## Credits & contributors
 

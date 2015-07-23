@@ -15,6 +15,10 @@
     {
       "name": "Oto Brglez",
       "email": "otobrglez@gmail.com"
+    },
+    {
+      "name": "Vlada Petrovic",
+      "email": "vlada.petrovic@gmail.com"
     }
   ],
   "homepage": "http://github.com/databox/databox-php",
