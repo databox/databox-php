@@ -24,20 +24,24 @@ class Client extends GuzzleClient
         return $this->post($path, $data)->json();
     }
 
-    private function processKPI($key, $value, $date = null)
+    private function processKPI($key, $value, $date = null, $attributes = null)
     {
-        $data = [sprintf('$%s', $key) => $value];
+        $data = [sprintf('$%s', trim($key, '$')) => $value];
         if (!is_null($date)) {
             $data['date'] = $date;
+        }
+
+        if (is_array($attributes)) {
+            $data = $data + $attributes;
         }
 
         return $data;
     }
 
-    public function push($key, $value, $date = null)
+    public function push($key, $value, $date = null, $attributes = null)
     {
         $response = $this->rawPush('/', [
-            'json' => ['data' => [$this->processKPI($key, $value, $date)]]
+            'json' => ['data' => [$this->processKPI($key, $value, $date, $attributes)]]
         ]);
 
         return $response['status'] === 'ok';
