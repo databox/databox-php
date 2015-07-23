@@ -51,11 +51,9 @@ class Client extends GuzzleClient
     {
         $response = $this->rawPush('/', [
             'json' => ['data' => array_map(function ($i) {
-                if (count($i) < 3) {
-                    $i[] = null;
-                }
+                $i = $i + [null, null, null, null];
 
-                return $this->processKPI($i[0], $i[1], $i[2]);
+                return $this->processKPI($i[0], $i[1], $i[2], $i[3]);
             }, $kpis)]
         ]);
 
