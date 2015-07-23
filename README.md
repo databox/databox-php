@@ -53,8 +53,13 @@ $c->insertAll([
     ['sales', 103, '2015-01-01 17:00:00'],
 ]);
 
+// Or push some attributes
+$ok = $c->push('sales', 203, null, [
+    'city' => 'Boston'
+]);
+
 print_r(
-    $c->lastPush(2)
+    $c->lastPush(3)
 );
 
 ```

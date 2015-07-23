@@ -29,6 +29,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($this->client->push('sales', 53.2));
         $this->assertTrue($this->client->push('sales', 40, '2015-01-01 17:00:00'));
+        $this->assertTrue($this->client->push('sales', 40, '2015-01-01 17:00:00', [
+            'name' => 'attribute name'
+        ]));
     }
 
     public function testFailedPush()
