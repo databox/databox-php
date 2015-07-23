@@ -1,7 +1,7 @@
 # Databox bindings for PHP
 
 [![Build Status][travis-badge]][travis]
-[![StyleCI][styleci-badge]][styleci]
+[![StyleCI](https://styleci.io/repos/37914175/shield?style=flat)][styleci]
 
 The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
@@ -80,5 +80,4 @@ See the [contribute guide](CONTRIBUTING.md) for more info how to contribute.
 
 [travis-badge]: https://secure.travis-ci.org/databox/databox-php.png
 [travis]: http://travis-ci.org/databox/databox-php
-[styleci-badge]: https://styleci.io/repos/37914175/shield
 [styleci]: https://styleci.io/repos/37914175
