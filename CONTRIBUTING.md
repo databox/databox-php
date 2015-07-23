@@ -25,4 +25,4 @@ You can do some things to increase the chance that your pull request is accepted
  * [PSR-1: Basic Coding Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md)
  * [PSR-2: Coding Style Guide](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-2-coding-style-guide.md)
  * [PSR-4: Autoloading Standard](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-4-autoloader.md)
- * Additional fixers you can find in (.styleci.yml)[StyleCI] file.
+ * Additional fixers you can find in [StyleCI](.styleci.yml) file.
