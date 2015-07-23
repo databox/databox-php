@@ -41,11 +41,11 @@ Use autoloader from Composer by:
 ```php
 use Databox\Client;
 
-$c = new Client('<push_token>'');
+$c = new Client('<push_token>');
 
 $ok = $c->push('sales', 203);
 if ($ok) {
-    echo "Inserted,...";
+    echo 'Inserted,...';
 }
 
 $c->insertAll([
