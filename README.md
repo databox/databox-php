@@ -1,7 +1,8 @@
 # Databox bindings for PHP
 
-[![Build Status][travis-badge]][travis]
-[![StyleCI](https://styleci.io/repos/37914175/shield?style=flat)][styleci]
+[![Build Status](http://img.shields.io/travis/databox/databox-php.svg)](https://travis-ci.org/databox/databox-php)
+[![Code Climate](http://img.shields.io/codeclimate/github/databox/databox-php.svg)](https://codeclimate.com/github/databox/databox-php)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
 
 The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
@@ -82,7 +83,3 @@ See the [contribute guide](CONTRIBUTING.md) for more info how to contribute.
 - [Uroš Majerič](http://github.com/umajeric)
 - [Oto Brglez](https://github.com/otobrglez)
 - [Vlada Petrovic](https://github.com/vladapetrovic)
-
-[travis-badge]: https://secure.travis-ci.org/databox/databox-php.png
-[travis]: http://travis-ci.org/databox/databox-php
-[styleci]: https://styleci.io/repos/37914175
