@@ -8,7 +8,7 @@ php:
   - 5.6
   - 7.0
   - hhvm
-  
+
 addons:
   code_climate:
     repo_token: c2c3acbf91df2bcaff077947f04e3de005c40cb39630856a38cca24439ec1499
@@ -19,6 +19,7 @@ before_script:
 
 script:
   - vendor/bin/phpunit -v --debug --color --coverage-clover build/logs/clover.xml
-  
+
 after_script:
   - vendor/bin/test-reporter
+  - php vendor/bin/coveralls
