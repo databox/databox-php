@@ -2,6 +2,8 @@
 
 namespace Databox\Tests;
 
+use Databox\Client;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public function __construct()
@@ -10,6 +12,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->setMethods(['rawPush'])
             ->setConstructorArgs(['adxg1kq5a4g04k0wk0s4wkssow8osw84'])
             ->getMock();
+    }
+
+    public function testClientCorrectOptions()
+    {
+        $token   = 'test-token';
+        $baseUrl = 'https://push2new.databox.com';
+
+        $client = new Client($token);
+        $this->assertEquals('application/json', $client->getDefaultOption('headers/Content-Type'));
+        $this->assertEquals($token, $client->getDefaultOption('auth/0'));
+        $this->assertEquals($baseUrl, $client->getBaseUrl());
     }
 
     public function testLastPush()
