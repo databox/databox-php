@@ -1,9 +1,10 @@
 # Databox bindings for PHP
 
 [![Build Status](http://img.shields.io/travis/databox/databox-php.svg)](https://travis-ci.org/databox/databox-php)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/databox/databox-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/databox/databox-php/?branch=master)
+[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/databox/databox-php.svg)](https://scrutinizer-ci.com/g/databox/databox-php/?branch=master)
 [![Code Climate](http://img.shields.io/codeclimate/github/databox/databox-php.svg)](https://codeclimate.com/github/databox/databox-php)
-[![Coverage Status](https://coveralls.io/repos/databox/databox-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/databox/databox-php?branch=master)
+[![Coverage Status](http://img.shields.io/coveralls/databox/databox-php.svg)](https://coveralls.io/github/databox/databox-php?branch=master)
+[![Dependency Status](https://www.versioneye.com/user/projects/55c28ebb653762001a00289b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55c28ebb653762001a00289b)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
 
 
