@@ -3,7 +3,7 @@
 [![Build Status](http://img.shields.io/travis/databox/databox-php.svg)](https://travis-ci.org/databox/databox-php)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/databox/databox-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/databox/databox-php/?branch=master)
 [![Code Climate](http://img.shields.io/codeclimate/github/databox/databox-php.svg)](https://codeclimate.com/github/databox/databox-php)
-[![Test Coverage](https://codeclimate.com/github/databox/databox-php/badges/coverage.svg)](https://codeclimate.com/github/databox/databox-php/coverage)
+[![Coverage Status](https://coveralls.io/repos/databox/databox-php/badge.svg?branch=master&service=github)](https://coveralls.io/github/databox/databox-php?branch=master)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
 
 
