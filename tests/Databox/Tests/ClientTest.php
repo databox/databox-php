@@ -2,14 +2,42 @@
 
 namespace Databox\Tests;
 
+use Databox\Client;
+use GuzzleHttp\Message\Response;
+use GuzzleHttp\Stream\Stream;
+
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
     public function __construct()
     {
         $this->client = $this->getMockBuilder('Databox\Client')
             ->setMethods(['rawPush'])
-            ->setConstructorArgs(['adxg1kq5a4g04k0wk0s4wkssow8osw84'])
             ->getMock();
+    }
+
+    public function testClientCorrectOptions()
+    {
+        $contentType = 'application/json';
+        $token       = 'test-token';
+        $baseUrl     = 'https://push2new.databox.com';
+
+        $client = new Client($token);
+        $this->assertEquals($contentType, $client->getDefaultOption('headers/Content-Type'));
+        $this->assertEquals($token, $client->getDefaultOption('auth/0'));
+        $this->assertEquals($baseUrl, $client->getBaseUrl());
+    }
+
+    public function testRawPush()
+    {
+        $client = $this->getMockBuilder('Databox\Client')
+            ->setMethods(['post'])
+            ->getMock();
+
+        $json     = '{"status":"ok"}';
+        $response = new Response(200, [], Stream::factory($json));
+        $client->method('post')->willReturn($response);
+
+        $this->assertEquals($json, json_encode($client->rawPush()));
     }
 
     public function testLastPush()
