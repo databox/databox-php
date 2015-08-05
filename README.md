@@ -2,7 +2,10 @@
 
 [![Build Status](http://img.shields.io/travis/databox/databox-php.svg)](https://travis-ci.org/databox/databox-php)
 [![Code Climate](http://img.shields.io/codeclimate/github/databox/databox-php.svg)](https://codeclimate.com/github/databox/databox-php)
+[![Test Coverage](https://codeclimate.com/github/databox/databox-php/badges/coverage.svg)](https://codeclimate.com/github/databox/databox-php/coverage)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
+
+
 
 The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
