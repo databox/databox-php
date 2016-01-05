@@ -3,8 +3,7 @@
 namespace Databox\Tests;
 
 use Databox\Client;
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Stream\Stream;
+use GuzzleHttp\Psr7\Response;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,14 +16,17 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testClientCorrectOptions()
     {
-        $contentType = 'application/json';
-        $token       = 'test-token';
-        $baseUrl     = 'https://push2new.databox.com';
+        $mimeType  = 'application/json';
+        $userAgent = 'databox-php';
+        $token     = 'test-token';
+        $baseUrl   = 'https://push2new.databox.com';
 
         $client = new Client($token);
-        $this->assertEquals($contentType, $client->getDefaultOption('headers/Content-Type'));
-        $this->assertEquals($token, $client->getDefaultOption('auth/0'));
-        $this->assertEquals($baseUrl, $client->getBaseUrl());
+        $this->assertEquals($mimeType, $client->getConfig('headers')['Content-Type']);
+        $this->assertEquals($userAgent, substr($client->getConfig('headers')['User-Agent'], 0, 11));
+        $this->assertEquals($mimeType, $client->getConfig('headers')['Accept']);
+        $this->assertEquals($baseUrl, (string) $client->getConfig('base_uri'));
+        $this->assertEquals($token, $client->getConfig('auth')[0]);
     }
 
     public function testRawPush()
@@ -34,7 +36,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->getMock();
 
         $json     = '{"status":"ok"}';
-        $response = new Response(200, [], Stream::factory($json));
+        $response = new Response(200, [], $json);
         $client->method('post')->willReturn($response);
 
         $this->assertEquals($json, json_encode($client->rawPush()));

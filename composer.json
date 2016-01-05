@@ -1,38 +1,40 @@
 {
-  "name": "databox/databox-php",
-  "description": "Databox bindings for PHP",
+  "name": "databox/databox",
   "type": "library",
+  "description": "Official PHP client for Databox",
+  "keywords": ["databox", "sdk", "client"],
+  "homepage": "http://github.com/databox/databox-php",
+  "license": "MIT",
   "authors": [
     {
       "name": "Jakob Murko",
-      "email": "jakob@databox.com",
-      "homepage": "http://databox.com"
+      "email": "jakob.murko@gmail.com",
+      "homepage": "https://github.com/sraka1"
     },
     {
       "name": "Uros Majeric",
-      "email": "uros@majeric.si"
+      "email": "uros@majeric.si",
+      "homepage": "https://github.com/umajeric"
     },
     {
       "name": "Oto Brglez",
-      "email": "otobrglez@gmail.com"
+      "email": "otobrglez@gmail.com",
+      "homepage": "https://github.com/otobrglez"
     },
     {
       "name": "Vlada Petrovic",
-      "email": "vlada.petrovic@gmail.com"
+      "email": "vlada.petrovic@gmail.com",
+      "homepage": "https://github.com/vladapetrovic"
     }
   ],
-  "homepage": "http://github.com/databox/databox-php",
-  "license": [
-    "MIT"
-  ],
   "require": {
-    "guzzlehttp/guzzle": "5.x",
-    "php": ">=5.4"
+    "guzzlehttp/guzzle": "^6.1",
+    "php": ">=5.5.0"
   },
   "require-dev": {
-    "phpunit/phpunit": "4.x",
-    "phpdocumentor/phpdocumentor": "2.*",
-    "codeclimate/php-test-reporter": "dev-master"
+    "phpunit/phpunit": "^4",
+    "phpdocumentor/phpdocumentor": "^2.8",
+    "codeclimate/php-test-reporter": "^0.2.0"
   },
   "autoload": {
     "psr-4": {
