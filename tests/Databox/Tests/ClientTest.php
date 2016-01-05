@@ -4,7 +4,6 @@ namespace Databox\Tests;
 
 use Databox\Client;
 use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\Psr7\Stream;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
