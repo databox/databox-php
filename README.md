@@ -12,7 +12,7 @@ The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
 ## Requirements
 
-* PHP >= 5.4 with [cURL](http://php.net/manual/en/book.curl.php) extension,
+* PHP >= 5.5.0 with [cURL](http://php.net/manual/en/book.curl.php) extension,
 * [Guzzle](https://github.com/guzzle/guzzle) library,
 * (optional) [PHPUnit](https://phpunit.de/) to run tests.
 
@@ -34,7 +34,7 @@ Use autoloader from Composer by:
 ```json
 {
     "require": {
-        "databox/databox-php": "@stable"
+        "databox/databox": "@stable"
     }
 }
 ```
