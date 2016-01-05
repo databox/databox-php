@@ -9,19 +9,19 @@ class Client extends GuzzleClient
     public function __construct($pushToken = null)
     {
         parent::__construct([
-            'base_url' => 'https://push2new.databox.com',
-            'defaults' => [
-                'headers' => [
-                    'Content-Type' => 'application/json'
-                ],
-                'auth' => [$pushToken, '', 'Basic']
+            'base_uri' => 'https://push2new.databox.com',
+            'headers'  => [
+                'User-Agent'   => 'databox-php/1.2',
+                'Content-Type' => 'application/json',
+                'Accept'       => 'application/json'
             ],
+            'auth' => [$pushToken, '', 'Basic']
         ]);
     }
 
     public function rawPush($path = '/', $data = [])
     {
-        return $this->post($path, $data)->json();
+        return json_decode($this->post($path, $data)->getBody(), true);
     }
 
     private function processKPI($key, $value, $date = null, $attributes = null)
