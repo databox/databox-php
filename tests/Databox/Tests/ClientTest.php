@@ -42,6 +42,18 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($json, json_encode($client->rawPush()));
     }
 
+    public function testRawGet()
+    {
+        $client = $this->getMockBuilder('Databox\Client')
+            ->setMethods(['get'])
+            ->getMock();
+
+        $json = '[]';
+        $response = new Response(200, [], $json);
+        $client->method('get')->willReturn($response);
+        $this->assertEquals($json, json_encode([]));
+    }
+
     public function testLastPush()
     {
         $this->client->method('rawGet')->willReturn([
