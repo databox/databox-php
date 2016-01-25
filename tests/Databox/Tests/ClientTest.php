@@ -10,22 +10,22 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function __construct()
     {
         $this->client = $this->getMockBuilder('Databox\Client')
-            ->setMethods(['rawPush'])
+            ->setMethods(['rawPush', 'rawGet'])
             ->getMock();
     }
 
     public function testClientCorrectOptions()
     {
-        $mimeType  = 'application/json';
+        $mimeType = 'application/json';
         $userAgent = 'databox-php';
-        $token     = 'test-token';
-        $baseUrl   = 'https://push2new.databox.com';
+        $token = 'test-token';
+        $baseUrl = 'https://push2new.databox.com';
 
         $client = new Client($token);
         $this->assertEquals($mimeType, $client->getConfig('headers')['Content-Type']);
         $this->assertEquals($userAgent, substr($client->getConfig('headers')['User-Agent'], 0, 11));
         $this->assertEquals($mimeType, $client->getConfig('headers')['Accept']);
-        $this->assertEquals($baseUrl, (string) $client->getConfig('base_uri'));
+        $this->assertEquals($baseUrl, (string)$client->getConfig('base_uri'));
         $this->assertEquals($token, $client->getConfig('auth')[0]);
     }
 
@@ -35,16 +35,28 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->setMethods(['post'])
             ->getMock();
 
-        $json     = '{"status":"ok"}';
+        $json = '{"status":"ok"}';
         $response = new Response(200, [], $json);
         $client->method('post')->willReturn($response);
 
         $this->assertEquals($json, json_encode($client->rawPush()));
     }
 
+    public function testRawGet()
+    {
+        $client = $this->getMockBuilder('Databox\Client')
+            ->setMethods(['get'])
+            ->getMock();
+
+        $json = '[]';
+        $response = new Response(200, [], $json);
+        $client->method('get')->willReturn($response);
+        $this->assertEquals($json, json_encode([]));
+    }
+
     public function testLastPush()
     {
-        $this->client->method('rawPush')->willReturn([
+        $this->client->method('rawGet')->willReturn([
             [], []
         ]);
 
