@@ -10,10 +10,10 @@ class Client extends GuzzleClient
     {
         parent::__construct([
             'base_uri' => 'https://push2new.databox.com',
-            'headers'  => [
-                'User-Agent'   => 'databox-php/1.2',
+            'headers' => [
+                'User-Agent' => 'databox-php/1.3',
                 'Content-Type' => 'application/json',
-                'Accept'       => 'application/json'
+                'Accept' => 'application/json'
             ],
             'auth' => [$pushToken, '', 'Basic']
         ]);
@@ -22,6 +22,11 @@ class Client extends GuzzleClient
     public function rawPush($path = '/', $data = [])
     {
         return json_decode($this->post($path, $data)->getBody(), true);
+    }
+
+    public function rawGet($path)
+    {
+        return json_decode($this->get($path)->getBody(), true);
     }
 
     private function processKPI($key, $value, $date = null, $attributes = null)
@@ -62,6 +67,6 @@ class Client extends GuzzleClient
 
     public function lastPush($n = 1)
     {
-        return $this->rawPush(sprintf('/lastpushes/%d', $n));
+        return $this->rawGet(sprintf('/lastpushes/%d', $n));
     }
 }
