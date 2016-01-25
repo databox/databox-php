@@ -5,7 +5,10 @@ $loader = require __DIR__ . '/./vendor/autoload.php';
 use Databox\Client;
 
 $token = getenv("DATABOX_PUSH_TOKEN");
-if (!$token) $token = 'adxg1kq5a4g04k0wk0s4wkssow8osw84';
+
+if (!$token) {
+    $token = 'adxg1kq5a4g04k0wk0s4wkssow8osw84';
+}
 
 $c = new Client($token);
 
