@@ -2,10 +2,9 @@
 Following guidelines of http://keepachangelog.com/
 
 ## [Unreleased]
-- update to support pushapi version 3
+- update to support Databox API version 3
 
 ## [1.3] - Jan 25, 2016
-
 - Use `GET /lastpushes`
 - Update for test suite
 - Update for UA version
@@ -32,9 +31,9 @@ Following guidelines of http://keepachangelog.com/
 ## [1.0] - Jul 2, 2015
 - Adding couple of flags
 
-[Unreleased]: https://github.com/databox/api/compare/1.3...master
-[1.3]: https://github.com/databox/api/compare/1.2...1.3
-[1.2]: https://github.com/databox/api/compare/1.1.1...1.2
-[1.1.1]: https://github.com/databox/api/compare/1.1...1.1.1
-[1.1]: https://github.com/databox/api/compare/1.0...1.1
+[Unreleased]: https://github.com/databox/databox-php/compare/1.3...master
+[1.3]: https://github.com/databox/databox-php/compare/1.2...1.3
+[1.2]: https://github.com/databox/databox-php/compare/1.1.1...1.2
+[1.1.1]: https://github.com/databox/databox-php/compare/1.1...1.1.1
+[1.1]: https://github.com/databox/databox-php/compare/1.0...1.1
 [1.0]: https://github.com/databox/databox-php/tree/1.0
