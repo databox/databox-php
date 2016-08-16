@@ -7,6 +7,9 @@
 [![Dependency Status](https://www.versioneye.com/user/projects/55c28ebb653762001a00289b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55c28ebb653762001a00289b)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
 
+[![HHVM Status](http://hhvm.h4cc.de/badge/databox/databox.svg?style=flat-square)](http://hhvm.h4cc.de/package/databox/databox)
+[![Latest Stable Version](https://poser.pugx.org/databox/databox/v/stable)](https://packagist.org/packages/databox/databox)
+
 
 The PHP SDK for interacting with the [Databox](http://databox.com) Push API.
 
@@ -66,6 +69,12 @@ $ok = $c->push('sales', 203, null, [
 print_r(
     $c->lastPush(3)
 );
+
+// Or push with units
+$c->insertAll([
+    ['transaction', 12134, null, null, 'USD'],
+    ['transaction', 3245, null, null, 'EUR']
+]);
 
 ```
 
