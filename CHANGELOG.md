@@ -2,7 +2,11 @@
 Following guidelines of http://keepachangelog.com/
 
 ## [Unreleased]
-- update to support Databox API version 3
+
+## [2.0] - Aug 16, 2016
+- update `GET /lastpushes` to support paging
+- implement `GET /lastpushes/{id}` to return specific push
+- implement `DELETE /data`
 
 ## [1.3] - Jan 25, 2016
 - Use `GET /lastpushes`
@@ -32,6 +36,7 @@ Following guidelines of http://keepachangelog.com/
 - Adding couple of flags
 
 [Unreleased]: https://github.com/databox/databox-php/compare/1.3...master
+[2.0]: https://github.com/databox/databox-php/compare/1.2...2.0
 [1.3]: https://github.com/databox/databox-php/compare/1.2...1.3
 [1.2]: https://github.com/databox/databox-php/compare/1.1.1...1.2
 [1.1.1]: https://github.com/databox/databox-php/compare/1.1...1.1.1
