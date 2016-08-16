@@ -82,6 +82,15 @@ class Client extends GuzzleClient
         return $this->rawGet(sprintf('/lastpushes?limit=%d', $n));
     }
 
+    public function getPush($sha)
+    {
+        if (is_array($sha) && !empty($sha)) {
+            return $this->rawGet('/lastpushes?id=' . implode(',', $sha));
+        } else {
+            return $this->rawGet("/lastpushes/{$sha}");
+        }
+    }
+
     public function metrics()
     {
         return $this->rawGet('/metrickeys');
