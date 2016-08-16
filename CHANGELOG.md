@@ -2,6 +2,8 @@
 Following guidelines of http://keepachangelog.com/
 
 ## [Unreleased]
+- script to record real API responses
+- run tests against stored responses
 
 ## [2.0] - Aug 16, 2016
 - update `GET /lastpushes` to support paging
