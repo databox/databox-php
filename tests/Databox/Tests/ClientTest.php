@@ -7,29 +7,32 @@ use GuzzleHttp\Psr7\Response;
 
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
+    const API_VERSION = 2;
+
     public function __construct()
     {
         $this->client = $this->getMockBuilder('Databox\Client')
-            ->setMethods(['rawPush', 'rawGet'])
+            ->setMethods(['rawPost', 'rawGet'])
             ->getMock();
     }
 
     public function testClientCorrectOptions()
     {
-        $mimeType = 'application/json';
-        $userAgent = 'databox-php';
-        $token = 'test-token';
-        $baseUrl = 'https://push2new.databox.com';
+        $mimeType  = 'application/json';
+        $userAgent = 'databox-php/2.0';
+        $accept    = 'application/vnd.databox.v' . self::API_VERSION . '+json';
+        $token     = 'test-token';
+        $baseUrl   = 'https://push.databox.com';
 
         $client = new Client($token);
         $this->assertEquals($mimeType, $client->getConfig('headers')['Content-Type']);
-        $this->assertEquals($userAgent, substr($client->getConfig('headers')['User-Agent'], 0, 11));
-        $this->assertEquals($mimeType, $client->getConfig('headers')['Accept']);
-        $this->assertEquals($baseUrl, (string)$client->getConfig('base_uri'));
+        $this->assertEquals($userAgent, $client->getConfig('headers')['User-Agent']);
+        $this->assertEquals($accept, $client->getConfig('headers')['Accept']);
+        $this->assertEquals($baseUrl, (string) $client->getConfig('base_uri'));
         $this->assertEquals($token, $client->getConfig('auth')[0]);
     }
 
-    public function testRawPush()
+    public function testRawPost()
     {
         $client = $this->getMockBuilder('Databox\Client')
             ->setMethods(['post'])
@@ -39,7 +42,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $response = new Response(200, [], $json);
         $client->method('post')->willReturn($response);
 
-        $this->assertEquals($json, json_encode($client->rawPush()));
+        $this->assertEquals($json, json_encode($client->rawPost()));
     }
 
     public function testRawGet()
@@ -51,7 +54,19 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $json = '[]';
         $response = new Response(200, [], $json);
         $client->method('get')->willReturn($response);
-        $this->assertEquals($json, json_encode([]));
+        $this->assertEquals($json, json_encode($client->lastPush()));
+    }
+
+    public function testRawDelete()
+    {
+        $client = $this->getMockBuilder('Databox\Client')
+            ->setMethods(['delete'])
+            ->getMock();
+
+        $json = '[]';
+        $response = new Response(200, [], $json);
+        $client->method('delete')->willReturn($response);
+        $this->assertEquals($json, json_encode($client->purge()));
     }
 
     public function testLastPush()
@@ -65,35 +80,65 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 
     public function testPush()
     {
-        $this->client->method('rawPush')->willReturn(
-            ['status' => 'ok']
-        );
+        $respose = ['id' => '1471305600b2ec099fde352d6c58b3'];
+        $this->client->method('rawPost')->willReturn($respose);
 
-        $this->assertTrue($this->client->push('sales', 53.2));
-        $this->assertTrue($this->client->push('sales', 40, '2015-01-01 17:00:00'));
-        $this->assertTrue($this->client->push('sales', 40, '2015-01-01 17:00:00', [
+        $this->assertEquals($respose['id'], $this->client->push('sales', 53.2));
+        $this->assertEquals($respose['id'], $this->client->push('sales', 40, '2015-01-01 17:00:00'));
+        $this->assertEquals($respose['id'], $this->client->push('sales', 40, '2015-01-01 17:00:00', [
             'name' => 'attribute name'
         ]));
     }
 
-    public function testFailedPush()
+    public function testMetrics()
     {
-        $this->client->method('rawPush')->willReturn(
-            ['status' => 'warnings some items not inserted (ok: 0, false: 1)']
-        );
+        $respose = json_decode('{"metrics":[{"title":"Val","key":"21805|val"},{"title":"Ping","key":"21805|ping"},{"title":"Sales","key":"21805|sales"},{"title":"Transaction","key":"21805|transaction"}]}', true);
+        $this->client->method('rawGet')->willReturn($respose);
 
-        $this->assertFalse($this->client->push(null, null));
+        $metrics = $this->client->metrics();
+        $this->assertArrayHasKey('metrics', $metrics);
+        $this->assertTrue(!empty($metrics['metrics']));
+    }
+
+    public function testGetPushWithId()
+    {
+        $sha     = '147130560011282848ac51b10b6c0c';
+        $respose = json_decode('{"request":{"date":"2016-08-16T13:45:21.640Z","body":{"data":[{"$referal":2677,"date":"2016-08-15","country":"Slovenia","city":"Ptuj","site":"https:\/\/databox.com"}]},"errors":[]},"response":{"date":"2016-08-16T13:45:21.645Z","body":{"id":"147130560011282848ac51b10b6c0c"}},"metrics":["21805|referal|country","21805|referal|city","21805|referal|site"]}', true);
+        $this->client->method('rawGet')->willReturn($respose);
+
+        $push = $this->client->getPush($sha);
+        $this->assertArrayHasKey('request', $push);
+        $this->assertArrayHasKey('response', $push);
+        $this->assertArrayHasKey('metrics', $push);
+        $this->assertEquals($sha, $push['response']['body']['id']);
+    }
+
+    public function testGetPushWithMultipleIds()
+    {
+        $sha = [
+            '147130560011282848ac51b10b6c0c',
+            '147130560098f4d9fc0a87f60256bd',
+            '1471305600b12452f84e232768c117'
+        ];
+        $respose = json_decode('[{"request":{"date":"2016-08-16T13:45:21.493Z","body":{"data":[{"$referal":2677,"date":"2016-08-15","country":"Slovenia","city":"Ptuj","site":"https:\/\/databox.com"}]},"errors":[]},"response":{"date":"2016-08-16T13:45:21.500Z","body":{"id":"147130560011282848ac51b10b6c0c"}},"metrics":["21805|referal|country","21805|referal|city","21805|referal|site"]},{"request":{"date":"2016-08-16T13:45:21.493Z","body":{"data":[{"$sales":2874,"date":"2016-08-16"}]},"errors":[]},"response":{"date":"2016-08-16T13:45:21.500Z","body":{"id":"147130560098f4d9fc0a87f60256bd"}},"metrics":["21805|sales"]},{"request":{"date":"2016-08-16T13:45:21.493Z","body":{"data":[{"$sales":9333}]},"errors":[]},"response":{"date":"2016-08-16T13:45:21.500Z","body":{"id":"1471305600b12452f84e232768c117"}},"metrics":["21805|sales"]}]', true);
+        $this->client->method('rawGet')->willReturn($respose);
+
+        $push = $this->client->getPush($sha);
+        $this->assertEquals(3, count($push));
+        $this->assertEquals($sha[0], $push[0]['response']['body']['id']);
+        $this->assertEquals($sha[1], $push[1]['response']['body']['id']);
+        $this->assertEquals($sha[2], $push[2]['response']['body']['id']);
     }
 
     public function testInsertAll()
     {
-        $this->client->method('rawPush')->willReturn(
-            ['status' => 'ok']
-        );
+        $respose = ['id' => '1471305600b2ec099fde352d6c58b3'];
+        $this->client->method('rawPost')->willReturn($respose);
 
-        $this->assertTrue($this->client->insertAll([
+        $this->assertEquals($respose['id'], $this->client->insertAll([
             ['sales', 53.2],
             ['sales', 50.2, '2015-01-01 17:00:00'],
+            ['sales', 50.2, '2015-01-01 17:00:00', null, 'USD']
         ]));
     }
 }
