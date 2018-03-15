@@ -4,10 +4,7 @@
 [![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/databox/databox-php.svg)](https://scrutinizer-ci.com/g/databox/databox-php/?branch=master)
 [![Code Climate](http://img.shields.io/codeclimate/github/databox/databox-php.svg)](https://codeclimate.com/github/databox/databox-php)
 [![Coverage Status](http://img.shields.io/coveralls/databox/databox-php.svg)](https://coveralls.io/github/databox/databox-php?branch=master)
-[![Dependency Status](https://www.versioneye.com/user/projects/55c28ebb653762001a00289b/badge.svg?style=flat)](https://www.versioneye.com/user/projects/55c28ebb653762001a00289b)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
-
-[![HHVM Status](http://hhvm.h4cc.de/badge/databox/databox.svg?style=flat-square)](http://hhvm.h4cc.de/package/databox/databox)
 [![Latest Stable Version](https://poser.pugx.org/databox/databox/v/stable)](https://packagist.org/packages/databox/databox)
 
 
