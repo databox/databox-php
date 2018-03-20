@@ -1,9 +1,5 @@
 # Databox bindings for PHP
 
-[![Build Status](http://img.shields.io/travis/databox/databox-php.svg)](https://travis-ci.org/databox/databox-php)
-[![Scrutinizer Code Quality](http://img.shields.io/scrutinizer/g/databox/databox-php.svg)](https://scrutinizer-ci.com/g/databox/databox-php/?branch=master)
-[![Code Climate](http://img.shields.io/codeclimate/github/databox/databox-php.svg)](https://codeclimate.com/github/databox/databox-php)
-[![Coverage Status](http://img.shields.io/coveralls/databox/databox-php.svg)](https://coveralls.io/github/databox/databox-php?branch=master)
 [![License](http://img.shields.io/:license-mit-blue.svg)](http://databox.mit-license.org)
 [![Latest Stable Version](https://poser.pugx.org/databox/databox/v/stable)](https://packagist.org/packages/databox/databox)
 
@@ -25,8 +21,9 @@ The first step to use `databox-php` is to download composer:
 $ curl -s http://getcomposer.org/installer | php
 ```
 
-Install dependencies using:
+Clone the repo and install dependencies using:
 ```bash
+$ git clone https://github.com/databox/databox-php.git && cd databox-php
 $ php composer.phar install
 ```
 
@@ -44,6 +41,9 @@ Use autoloader from Composer by:
 ## Basic example
 
 ```php
+<?php
+require __DIR__ . '/vendor/autoload.php';
+
 use Databox\Client;
 
 $c = new Client('<push_token>');
