@@ -9,10 +9,10 @@ class Client extends GuzzleClient
     const API_VERSION  = '2.0';
     const API_ENDPOINT = 'https://push.databox.com';
 
-    public function __construct($pushToken = null)
+    public function __construct($pushToken = null, array $options = [])
     {
         $majorVer = explode('.', self::API_VERSION)[0];
-        parent::__construct([
+        $baseOptions = [
             'base_uri' => self::API_ENDPOINT,
             'headers'  => [
                 'User-Agent'   => 'databox-php/' . self::API_VERSION,
@@ -20,7 +20,10 @@ class Client extends GuzzleClient
                 'Accept'       => 'application/vnd.databox.v' . $majorVer . '+json'
             ],
             'auth' => [$pushToken, '', 'Basic']
-        ]);
+        ];
+        $options = array_merge($options, $baseOptions);
+
+        parent::__construct($options);
     }
 
     public function rawPost($path = '/', $data = [])

@@ -23,13 +23,20 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $accept    = 'application/vnd.databox.v' . self::API_VERSION . '+json';
         $token     = 'test-token';
         $baseUrl   = 'https://push.databox.com';
+        $options   = [
+            'headers' => ['User-Agent' => 'Do not overwrite this'],
+            'proxy' => [
+                'http'  => 'tcp://localhost:8125',
+            ]
+        ];
 
-        $client = new Client($token);
+        $client = new Client($token, $options);
         $this->assertEquals($mimeType, $client->getConfig('headers')['Content-Type']);
         $this->assertEquals($userAgent, $client->getConfig('headers')['User-Agent']);
         $this->assertEquals($accept, $client->getConfig('headers')['Accept']);
         $this->assertEquals($baseUrl, (string) $client->getConfig('base_uri'));
         $this->assertEquals($token, $client->getConfig('auth')[0]);
+        $this->assertEquals($options['proxy']['http'], $client->getConfig('proxy')['http']);
     }
 
     public function testRawPost()
