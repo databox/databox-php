@@ -9,7 +9,13 @@ class Client extends GuzzleClient
     const API_VERSION  = '2.0';
     const API_ENDPOINT = 'https://push.databox.com';
 
-    public function __construct($pushToken = null, array $options = [])
+    /**
+     * Ensure unqiue feature (allows storing mulitple values to one timestamp). Default = false
+     * @var bool
+     */
+    private $ensureUnique;
+
+    public function __construct($pushToken = null, array $options = [], bool $ensureUnique = false)
     {
         $majorVer = explode('.', self::API_VERSION)[0];
         $baseOptions = [
@@ -22,6 +28,8 @@ class Client extends GuzzleClient
             'auth' => [$pushToken, '', 'Basic']
         ];
         $options = array_merge($options, $baseOptions);
+
+        $this->ensureUnique = $ensureUnique;
 
         parent::__construct($options);
     }
@@ -61,7 +69,10 @@ class Client extends GuzzleClient
     public function push($key, $value, $date = null, $attributes = null, $unit = null)
     {
         $response = $this->rawPost('/', [
-            'json' => ['data' => [$this->processKPI($key, $value, $date, $attributes, $unit)]]
+            'json' => [
+                'data' => [$this->processKPI($key, $value, $date, $attributes, $unit)],
+                'ensureUnique' => $this->ensureUnique
+            ]
         ]);
 
         return $response['id'];
@@ -70,11 +81,14 @@ class Client extends GuzzleClient
     public function insertAll($kpis)
     {
         $response = $this->rawPost('/', [
-            'json' => ['data' => array_map(function ($i) {
-                $i = $i + [null, null, null, null, null];
+            'json' => [
+                'data' => array_map(function ($i) {
+                    $i = $i + [null, null, null, null, null];
 
-                return $this->processKPI($i[0], $i[1], $i[2], $i[3], $i[4]);
-            }, $kpis)]
+                    return $this->processKPI($i[0], $i[1], $i[2], $i[3], $i[4]);
+                }, $kpis),
+                'ensureUnique' => $this->ensureUnique
+            ]
         ]);
 
         return $response['id'];
