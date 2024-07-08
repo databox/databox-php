@@ -1,0 +1,11 @@
+{
+  "artifactVersion": "{VERSION}",
+  "artifactUrl": "https://github.com/databox/databox-php",
+  "composerPackageName": "databox",
+  "developerOrganization": "Databox",
+  "developerOrganizationUrl": "https://databox.com/",
+  "packageName": "Databox",
+  "invokerPackage": "Databox",
+  "licenseName": "MIT",
+  "library": "guzzle"
+}
