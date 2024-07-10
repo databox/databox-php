@@ -1,0 +1,40 @@
+{
+    "name": "databox",
+    "version": "2.1",
+    "description": "Push API resources Open API documentation",
+    "keywords": [
+        "openapitools",
+        "openapi-generator",
+        "openapi",
+        "php",
+        "sdk",
+        "rest",
+        "api"
+    ],
+    "homepage": "https://github.com/databox/databox-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Databox",
+            "homepage": "https://databox.com/"
+        }
+    ],
+    "require": {
+        "php": "^7.4 || ^8.0",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^1.7 || ^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": { "Databox\\" : "lib/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Databox\\Test\\" : "test/" }
+    }
+}
