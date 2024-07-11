@@ -17,27 +17,15 @@ To install the bindings via [Composer](https://getcomposer.org/), add the follow
 ```json
 {
   "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/GIT_USER_ID/GIT_REPO_ID.git"
-    }
+    {"type": "composer", "url": "https://repo.packagist.com/databox/"}
   ],
-  "require": {
-    "GIT_USER_ID/GIT_REPO_ID": "*@dev"
+  "require" : {
+    "databox/databox": "@stable"
   }
 }
 ```
 
 Then run `composer install`
-
-### Manual Installation
-
-Download the files and include `autoload.php`:
-
-```php
-<?php
-require_once('/path/to/Databox/vendor/autoload.php');
-```
 
 ## Getting Started
 
