@@ -1,6 +1,6 @@
 {
-    "name": "databox",
-    "version": "2.1.1",
+    "name": "databox/databox",
+    "version": "2.1.3",
     "description": "Push API resources Open API documentation",
     "keywords": [
         "openapitools",
