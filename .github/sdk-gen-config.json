@@ -1,7 +1,7 @@
 {
   "artifactVersion": "{VERSION}",
   "artifactUrl": "https://github.com/databox/databox-php",
-  "composerPackageName": "databox",
+  "composerPackageName": "databox/databox",
   "developerOrganization": "Databox",
   "developerOrganizationUrl": "https://databox.com/",
   "packageName": "Databox",
