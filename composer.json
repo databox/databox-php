@@ -32,7 +32,7 @@
         "friendsofphp/php-cs-fixer": "^3.5"
     },
     "autoload": {
-        "psr-4": { "Databox\\" : "src/" }
+        "psr-4": { "Databox\\" : "src/lib" }
     },
     "autoload-dev": {
         "psr-4": { "Databox\\Test\\" : "src/test" }
