@@ -15,8 +15,7 @@ function execute()
     // Configure HTTP basic authorization: basicAuth
     $config = Configuration::getDefaultConfiguration()
         ->setHost('https://push.databox.com')
-        ->setUsername('<CUSTOM_DATA_TOKEN>')
-        ->setUserAgent('databox-designer-pushdata/2.0');
+        ->setUsername('<CUSTOM_DATA_TOKEN>');
 
     $headers = [
         'Content-Type' => 'application/json',
