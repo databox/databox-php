@@ -3,7 +3,7 @@ on:
   repository_dispatch:
     types: [publish_sdk]
 env:
-  GENERATOR_VERISON: "7.6.0" 
+  GENERATOR_VERISON: "7.6.0"
   CONFIG_FILE: "sdk-gen-config.json"
 jobs:
   sdk:
@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      
+
       - name: Get Latest Release
         id: latest-version
         uses: pozetroninc/github-action-get-latest-release@v0.7.0
@@ -45,7 +45,7 @@ jobs:
             }
             const newVersion = parts.join('.');
             return newVersion;
-       
+
       - name: Download OpenAPI Generator
         run: |
           curl https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/${{ env.GENERATOR_VERISON }}/openapi-generator-cli-${{ env.GENERATOR_VERISON }}.jar -o ${{ runner.temp }}/openapi-generator-cli.jar
@@ -78,9 +78,8 @@ jobs:
         run: |
           java --version
           java -jar ${{ runner.temp }}/openapi-generator-cli.jar generate -i ${{ runner.temp }}/openapispec/openapi.yml -g php -o ./src -c ${{ runner.temp }}/${{ env.CONFIG_FILE }} --skip-validate-spec
-          cp ./src/README.md ./README.md
-          cp ./src/composer.json ./composer.json
           cp -r ./src/docs ./docs
+          git checkout HEAD README.md composer.json
 
       - name: Create Pull Request
         id: cpr
