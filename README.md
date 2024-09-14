@@ -52,6 +52,7 @@ use Databox\Api\DefaultApi;
 use Databox\ApiException;
 use Databox\Configuration;
 use Databox\Model\PushData as DataboxPushData;
+use Databox\Model\PushDataAttribute;
 use GuzzleHttp\Client;
 
 execute();
@@ -79,8 +80,19 @@ function execute()
         ->setKey('<METRIC_KEY_NAME>') // for e.g. sessions
         ->setValue(125)
         ->setDate('2017-01-01T00:00:00Z') // Date in ISO8601 format
-        ->setUnit('<UNIT>') // for e.g. $
-        ->setAttributes(['<DIMENSION_VALUE>']); // for e.g. ['US']
+        ->setUnit('<UNIT>'); // for e.g. $
+
+    // Optional
+    if (true) { // If you want to push data to a specific dimension
+        $pushDataAttribute = new PushDataAttribute(
+            [
+                'key'   => '<DIMENSION_KEY>', // for e.g. country
+                'value' => '<DIMENSION_VALUE>' // for e.g. US
+            ]
+        );
+
+        $pushData->setAttributes([$pushDataAttribute]);
+    }
 
     try {
         $apiInstance->dataPost([$pushData]);
